@@ -1,5 +1,15 @@
 # Building conda packages
 
+## r-rock
+
+```
+conda skeleton cran https://github.com/umccr/rock
+# edit the bioconductor packages in meta.yaml e.g. `r-genomicranges` to `bioconductor-genomicranges`
+# use `r-base=3.4.1` for now
+conda build r-rock
+anaconda upload /data/cephfs/punim0010/extras/pdiakumis/miniconda/envs/conda-bld/conda-bld/linux-64/r-rock-0.0.1-r341_0.tar.bz2
+```
+
 ## r-pebbles
 
 ```
