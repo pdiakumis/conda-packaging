@@ -10,7 +10,7 @@ package:
 source:
 
   git_url: https://github.com/umccr/rock
-  git_tag: 0.0.1_umccrise
+  git_tag: 0.0.1
 
 build:
   merge_build_host: True  # [win]
@@ -34,11 +34,13 @@ requirements:
     - bioconductor-genomicranges
     - bioconductor-omiccircos
     - r-dplyr
+    - r-ggplot2
     - r-glue
     - r-pebbles
     - r-purrr
     - r-readr
     - r-rlang >=0.1.2
+    - r-scales
     - r-tibble
     - r-tidyr
     - r-vcfr
@@ -48,11 +50,13 @@ requirements:
     - bioconductor-genomicranges
     - bioconductor-omiccircos
     - r-dplyr
+    - r-ggplot2
     - r-glue
     - r-pebbles
     - r-purrr
     - r-readr
     - r-rlang >=0.1.2
+    - r-scales
     - r-tibble
     - r-tidyr
     - r-vcfr
@@ -90,7 +94,7 @@ about:
 # ByteCompile: true
 # Remotes: github::umccr/pebbles
 # Depends: R (>= 2.10)
-# Imports: dplyr, GenomicRanges, glue, OmicCircos, pebbles, purrr, readr, rlang (>= 0.1.2), tibble, tidyr, vcfR
+# Imports: dplyr, GenomicRanges, ggplot2, glue, OmicCircos, pebbles, purrr, readr, rlang (>= 0.1.2), scales, tibble, tidyr, vcfR
 # Roxygen: list(markdown = TRUE)
 # RoxygenNote: 6.1.0
 # Suggests: covr, knitr, rmarkdown, testthat,

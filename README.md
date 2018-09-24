@@ -2,6 +2,20 @@
 
 ## r-rock
 
+* Need to specify conda channels to build this one. Either use `conda build -c channel r-rock` or put this in
+  your `~/.condarc` file:
+
+```
+channels:
+  - pdiakumis
+  - conda-forge
+  - bioconda
+  - defaults
+```
+
+* The `conda skeleton cran` command doesn't pull the latest tag, even if you specify it on
+  the command line with `--git-tag`. Might be trying to pull the local version for some reason.
+
 ```
 conda skeleton cran https://github.com/umccr/rock
 # edit the bioconductor packages in meta.yaml e.g. `r-genomicranges` to `bioconductor-genomicranges`
