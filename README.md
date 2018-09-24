@@ -13,8 +13,8 @@ channels:
   - defaults
 ```
 
-* The `conda skeleton cran` command doesn't pull the latest tag, even if you specify it on
-  the command line with `--git-tag`. Might be trying to pull the local version for some reason.
+* The `conda skeleton cran` command automatically pulls the latest tag. You can specify a different
+  tag on the command line with `--git-tag`.
 
 ```
 conda skeleton cran https://github.com/umccr/rock
