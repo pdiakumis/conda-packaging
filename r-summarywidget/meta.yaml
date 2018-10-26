@@ -1,0 +1,85 @@
+{% set version = '0.0.0.9000' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-summarywidget
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/pdiakumis/summarywidget
+  git_tag: 0.0.0.9000
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: knitr, rmarkdown, DT
+requirements:
+  build:
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base=3.4.1
+    - r-crosstalk
+    - r-htmltools
+    - r-htmlwidgets
+
+  run:
+    - r-base=3.4.1
+    - r-crosstalk
+    - r-htmltools
+    - r-htmlwidgets
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('summarywidget')"           # [not win]
+    - "\"%R%\" -e \"library('summarywidget')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/kent37/summarywidget
+  license: MIT + file LICENSE
+  summary: SummaryWidget displays a single statistic derived from a linked table. It's primary
+    use is with the crosstalk package. Used with crosstalk, a summarywidget displays
+    a value which updates as the data selection changes.
+  license_family: MIT
+
+# The original CRAN metadata for this package was:
+
+# Package: summarywidget
+# Title: Display Summary Statistics from Linked Data
+# Version: 0.0.0.9000
+# Authors@R: person("Kent", "Johnson", email = "kent@kentsjohnson.com", role = c("aut", "cre"))
+# Description: SummaryWidget displays a single statistic derived from a linked table. It's primary use is with the crosstalk package. Used with crosstalk, a summarywidget displays a value which updates as the data selection changes.
+# URL: https://github.com/kent37/summarywidget
+# BugReports: https://github.com/kent37/summarywidget/issues
+# Depends: R (>= 3.3.2)
+# License: MIT + file LICENSE
+# Encoding: UTF-8
+# LazyData: true
+# Roxygen: list(markdown = TRUE)
+# RoxygenNote: 6.0.1
+# Imports: crosstalk, htmltools, htmlwidgets
+# Suggests: knitr, rmarkdown, DT
+# VignetteBuilder: knitr
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
