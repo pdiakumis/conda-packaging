@@ -1,0 +1,69 @@
+{% set version = '1.1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-rlogging
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/pdiakumis/rlogging
+  git_tag: 1.1
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base=3.4.1
+
+  run:
+    - r-base=3.4.1
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('rlogging')"           # [not win]
+    - "\"%R%\" -e \"library('rlogging')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/mjkallen/rlogging
+  license: MIT + file LICENSE
+  summary: A simple logging facility that extends R's message(), warning(), and stop() functions.
+  license_family: MIT
+
+# The original CRAN metadata for this package was:
+
+# Package: rlogging
+# Version: 1.1
+# Date: 2014-03-28
+# License: MIT + file LICENSE
+# Description: A simple logging facility that extends R's message(), warning(), and stop() functions.
+# Title: Simple logging in R
+# Author: Maarten-Jan Kallen, Felix Jung
+# Maintainer: Maarten-Jan Kallen <sayhi@maartenjan.org>
+# URL: https://github.com/mjkallen/rlogging
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
