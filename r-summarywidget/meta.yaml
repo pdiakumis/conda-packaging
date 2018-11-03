@@ -30,13 +30,13 @@ requirements:
     - {{posix}}zip               # [win]
 
   host:
-    - r-base=3.4.1
+    - r-base
     - r-crosstalk
     - r-htmltools
     - r-htmlwidgets
 
   run:
-    - r-base=3.4.1
+    - r-base
     - r-crosstalk
     - r-htmltools
     - r-htmlwidgets
