@@ -8,7 +8,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: kableExtra_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/kableExtra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/kableExtra/kableExtra_{{ version }}.tar.gz
@@ -30,7 +29,7 @@ requirements:
     - {{posix}}zip               # [win]
 
   host:
-    - r-base=3.4.1
+    - r-base
     - r-htmltools
     - r-knitr >=1.16
     - r-magrittr
@@ -44,7 +43,7 @@ requirements:
     - r-xml2 >=1.1.1
 
   run:
-    - r-base=3.4.1
+    - r-base
     - r-htmltools
     - r-knitr >=1.16
     - r-magrittr
