@@ -16,4 +16,5 @@ conda skeleton cran https://github.com/umccr/foo
 conda build r-foo
 anaconda upload /path/to/miniconda/envs/cbuild/conda-bld/linux-64/r-foo-0.0.1-r351_0.tar.bz2
 conda convert -p osx-64 /path/to/miniconda/envs/cbuild/conda-bld/linux-64/r-foo-0.0.0.1-r351_0.tar.bz2 -o /path/to/miniconda/envs/cbuild/conda-bld -f
+conda build purge # cleans up stuff
 ```

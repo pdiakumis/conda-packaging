@@ -10,7 +10,7 @@ package:
 source:
 
   git_url: https://github.com/pdiakumis/woofr
-  git_tag: 0.0.0.1_dev
+  git_tag: 0.0.0.1
 
 build:
   merge_build_host: True  # [win]
