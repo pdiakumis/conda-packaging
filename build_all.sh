@@ -4,7 +4,6 @@ conda activate cbuild
 
 NAME=$1
 echo "Building $NAME";
-echo "PATH is $PATH"
 
 CHANNELS="-c pdiakumis -c conda-forge -c bioconda -c defaults"
 #PACKAGE_PATH=$(conda build $NAME $CHANNELS --output | tail -n1)
