@@ -1,0 +1,154 @@
+{% set version = '4.4' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-lares
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/laresbernardo/lares
+  git_tag: 796488e6f1
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: anytime, caret, DALEX, googleAnalyticsR, gtrendsR, plotly, shiny, shinydashboard, VIM
+requirements:
+  build:
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+    - r-dbi
+    - r-rcolorbrewer
+    - r-rpostgresql
+    - r-snowballc
+    - r-beepr
+    - r-config
+    - r-corrplot
+    - r-devtools
+    - r-dplyr
+    - r-forecast
+    - r-ggplot2
+    - r-ggrepel
+    - r-googleauthr
+    - r-googlesheets
+    - r-gridextra
+    - r-h2o
+    - r-httr
+    - r-jsonlite
+    - r-knitr
+    - r-lubridate
+    - r-mailr
+    - r-openxlsx
+    - r-proc
+    - r-quantmod
+    - r-rjava
+    - r-rdrop2
+    - r-reshape2
+    - r-rlang
+    - r-rlist
+    - r-rmarkdown
+    - r-rtweet
+    - r-rvest
+    - r-scales
+    - r-skimr
+    - r-stringr
+    - r-tidyr
+    - r-wordcloud
+    - r-xml2
+
+  run:
+    - r-base
+    - r-dbi
+    - r-rcolorbrewer
+    - r-rpostgresql
+    - r-snowballc
+    - r-beepr
+    - r-config
+    - r-corrplot
+    - r-devtools
+    - r-dplyr
+    - r-forecast
+    - r-ggplot2
+    - r-ggrepel
+    - r-googleauthr
+    - r-googlesheets
+    - r-gridextra
+    - r-h2o
+    - r-httr
+    - r-jsonlite
+    - r-knitr
+    - r-lubridate
+    - r-mailr
+    - r-openxlsx
+    - r-proc
+    - r-quantmod
+    - r-rjava
+    - r-rdrop2
+    - r-reshape2
+    - r-rlang
+    - r-rlist
+    - r-rmarkdown
+    - r-rtweet
+    - r-rvest
+    - r-scales
+    - r-skimr
+    - r-stringr
+    - r-tidyr
+    - r-wordcloud
+    - r-xml2
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('lares')"           # [not win]
+    - "\"%R%\" -e \"library('lares')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/laresbernardo/lares
+  license: AGPL-3
+  summary: R library for better/faster analytics, visualization, data mining, and machine learning
+    tasks.
+  license_family: AGPL
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/AGPL-3'
+
+# The original CRAN metadata for this package was:
+
+# Package: lares
+# Type: Package
+# Title: Analytics, Data Mining & Machine Learning
+# Version: 4.4
+# Author: Bernardo Lares
+# Maintainer: Bernardo Lares <laresbernardo@gmail.com>
+# Description: R library for better/faster analytics, visualization, data mining, and machine learning tasks.
+# License: AGPL-3
+# Encoding: UTF-8
+# LazyData: true
+# Imports: beepr, DBI, config, corrplot, devtools, dplyr, forecast, ggrepel, ggplot2, googleAuthR, googlesheets, gridExtra, h2o, httr, jsonlite, knitr, lubridate, mailR, openxlsx, pROC, quantmod, RColorBrewer, rdrop2, reshape2, rlang, rlist, rJava, rmarkdown, RPostgreSQL, rtweet, rvest, scales, skimr, SnowballC, stringr, tidyr, wordcloud, xml2
+# Suggests: anytime, caret, DALEX, googleAnalyticsR, gtrendsR, plotly, shiny, shinydashboard, VIM
+# URL: https://github.com/laresbernardo/lares
+# BugReports: https://github.com/laresbernardo/lares/issues
+# RoxygenNote: 6.1.0
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml
