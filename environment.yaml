@@ -1,9 +1,10 @@
 name: cbuild
 channels:
   - conda-forge
-  - bioconda
   - defaults
 dependencies:
   - anaconda-client
   - conda-build
   - conda-verify
+  - python
+  - r-base ==4.0.2

@@ -16,6 +16,7 @@ build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
+  # no skip
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -24,9 +25,9 @@ build:
 
 requirements:
   build:
-    - {{posix}}filesystem        # [win]
-    - {{posix}}git
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}git
+    - {{ posix }}zip               # [win]
 
   host:
     - r-base
@@ -48,9 +49,14 @@ test:
 
 about:
   home: https://github.com/mjkallen/rlogging
-  license: MIT + file LICENSE
+
+  license: MIT
   summary: A simple logging facility that extends R's message(), warning(), and stop() functions.
+
   license_family: MIT
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
 
 # The original CRAN metadata for this package was:
 
@@ -65,5 +71,5 @@ about:
 # URL: https://github.com/mjkallen/rlogging
 
 # See
-# http://docs.continuum.io/conda/build.html for
+# https://docs.conda.io/projects/conda-build for
 # more information about meta.yaml
