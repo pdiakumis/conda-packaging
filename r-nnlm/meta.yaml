@@ -36,8 +36,6 @@ requirements:
 
   host:
     - r-base
-    - r-stats
-    - r-utils
     - r-rcpp
     - r-rcpparmadillo
     - r-rcppprogress
@@ -45,8 +43,6 @@ requirements:
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
-    - r-stats
-    - r-utils
     - r-rcpp
     - r-rcpparmadillo
     - r-rcppprogress
@@ -65,4 +61,4 @@ about:
     Kullback-Leibler divergence loss. Many other features are also implemented,
     including missing value imputation, domain knowledge integration,
     designable W and H matrices and multiple forms of regularizations.
-  license_family: BSD_2_clause + file LICENSE
+  license_family: BSD
