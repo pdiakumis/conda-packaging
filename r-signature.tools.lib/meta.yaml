@@ -1,0 +1,119 @@
+{% set version = '0.0.0.9000' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-signature.tools.lib
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/pdiakumis/signature.tools.lib
+  git_tag: 0.0.0.9000
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  # no skip
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: BSgenome.Hsapiens.UCSC.hg38, BSgenome.Hsapiens.1000genomes.hs37d5, BSgenome.Mmusculus.UCSC.mm10, BSgenome.Cfamiliaris.UCSC.canFam3,
+requirements:
+  build:
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}git
+    - {{ posix }}zip               # [win]
+
+  host:
+    - r-base
+    - r-gensa
+    - r-nmf
+    - r-nnlm
+    - r-rcircos
+    - r-cluster
+    - r-domc
+    - r-doparallel
+    - r-foreach
+    - r-ggplot2
+    - r-gmp
+    - r-lpsolve
+    - r-nnls
+    - r-plyr
+    - r-scales
+    - bioconductor-bsgenome
+    - bioconductor-biocgenerics
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-summarizedexperiment
+    - bioconductor-variantannotation
+
+  run:
+    - r-base
+    - r-gensa
+    - r-nmf
+    - r-nnlm
+    - r-rcircos
+    - r-cluster
+    - r-domc
+    - r-doparallel
+    - r-foreach
+    - r-ggplot2
+    - r-gmp
+    - r-lpsolve
+    - r-nnls
+    - r-plyr
+    - r-scales
+    - bioconductor-bsgenome
+    - bioconductor-biocgenerics
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+    - bioconductor-iranges
+    - bioconductor-summarizedexperiment
+    - bioconductor-variantannotation
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('signature.tools.lib')"           # [not win]
+    - "\"%R%\" -e \"library('signature.tools.lib')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/pdiakumis/signature.tools.lib
+  license: What license is it under?
+  summary: R package with useful functions for mutational signatures analysis.
+
+  license_family: OTHER
+
+# The original CRAN metadata for this package was:
+
+# Package: signature.tools.lib
+# Title: Signature Tools
+# Version: 0.0.0.9000
+# Authors@R: person("Andrea", "Degasperi", email = "ad923@cam.ac.uk", role = c("aut", "cre"))
+# Description: R package with useful functions for mutational signatures analysis.
+# Depends: R (>= 3.2.1)
+# License: What license is it under?
+# Encoding: UTF-8
+# LazyData: true
+# biocViews:
+# Remotes: linxihui/NNLM
+# Imports: VariantAnnotation, SummarizedExperiment, BiocGenerics, GenomeInfoDb, NMF, foreach, doParallel, doMC, lpSolve, ggplot2, methods, cluster, stats, NNLM, nnls, GenSA, gmp, plyr, RCircos, scales, GenomicRanges, IRanges, BSgenome
+# Suggests: BSgenome.Hsapiens.UCSC.hg38, BSgenome.Hsapiens.1000genomes.hs37d5, BSgenome.Mmusculus.UCSC.mm10, BSgenome.Cfamiliaris.UCSC.canFam3,
+# RoxygenNote: 7.1.0
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml
