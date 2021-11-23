@@ -1,4 +1,4 @@
-{% set version = '1.13' %}
+{% set version = '1.25' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -10,20 +10,20 @@ package:
 source:
 
   git_url: https://github.com/UMCUGenetics/mutSigExtractor
-  git_tag: 1.13
+  git_tag: 1.25
 
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
-  # no skip
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
-# Suggests: BSgenome.Hsapiens.UCSC.hg19
+# Suggests: BSgenome.Hsapiens.UCSC.hg19, NNLM, reshape2, ggplot2, stringr
 requirements:
   build:
     - {{ posix }}filesystem        # [win]
@@ -57,7 +57,7 @@ test:
 about:
   home: https://github.com/UMCUGenetics/mutSigExtractor
   license: GPL3
-  summary: Extracts SNV, indel, and SV signatures from vcf files.
+  summary: Extracts SNV, indel, DBS, and SV signatures from vcf files.
 
   license_family: GPL3
 
@@ -65,18 +65,19 @@ about:
 
 # Package: mutSigExtractor
 # Type: Package
-# Title: Extracts SNV, indel, and SV signatures from vcf files.
-# Version: 1.13
+# Title: Extracts SNV, indel, DBS, and SV signatures from vcf files.
+# Version: 1.25
 # Author: Luan Nguyen
 # Maintainer: Luan N. Nguyen <n.l.nguyen-2@umcutrecht.nl>
-# Description: Extracts SNV, indel, and SV signatures from vcf files.
+# Description: Extracts SNV, indel, DBS, and SV signatures from vcf files.
 # License: GPL3
 # Encoding: UTF-8
 # LazyData: true
-# RoxygenNote: 7.1.0
+# RoxygenNote: 7.1.1
 # biocViews:
+# Depends: R (>= 3.5.0)
 # Imports: BSgenome, GenomeInfoDb, IRanges
-# Suggests: BSgenome.Hsapiens.UCSC.hg19
+# Suggests: BSgenome.Hsapiens.UCSC.hg19, NNLM, reshape2, ggplot2, stringr
 
 # See
 # https://docs.conda.io/projects/conda-build for
