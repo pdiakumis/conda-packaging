@@ -13,9 +13,11 @@ conda create -n cbuild -c conda-forge -c defaults conda-build anaconda-client co
 
 ```
 conda skeleton cran https://github.com/umccr/foo
-conda build r-foo
-# conda build -c conda-forge -c defaults --R 4.0 r-rlogging
-anaconda upload /path/to/miniconda/envs/cbuild/conda-bld/linux-64/r-foo-0.0.1-r351_0.tar.bz2
+conda mambabuild r-foo # mambabuild is a lot faster
+# conda mambabuild -c conda-forge -c defaults --R 4.0 r-rlogging
+
+anaconda -t <token> upload /path/to/miniconda/envs/cbuild/conda-bld/linux-64/r-foo-0.0.1-r351_0.tar.bz2
 conda convert -p osx-64 /path/to/miniconda/envs/cbuild/conda-bld/linux-64/r-foo-0.0.0.1-r351_0.tar.bz2 -o /path/to/miniconda/envs/cbuild/conda-bld -f
 conda build purge # cleans up stuff
+conda clean --all
 ```
